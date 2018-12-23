@@ -4,7 +4,7 @@ namespace Infrastructure\Discount\Query;
 
 use Domain\Discount\Query\IProductsAffectedByDiscountQuery;
 
-class ProductsAffectedByDiscountQuery implements IProductsAffectedByDiscountQuery
+class DoctrineProductsAffectedByDiscountQuery implements IProductsAffectedByDiscountQuery
 {
     /** @var EntityManagerInterface */
     private $entityManager;

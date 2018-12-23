@@ -28,7 +28,7 @@ class DiscountService implements IDiscountService
     {
         $amount = 0;
 
-        if ($this->discountableProductSpecification->isSatisfied($discountId, $discountId)) {
+        if ($this->discountableProductSpecification->isSatisfied($productId, $discountId)) {
             $discount = $this->discounts->get($discountId);
             $amount   = $discount->calculate($price);
         }
