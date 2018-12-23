@@ -16,20 +16,35 @@ class Discount
     /** @var int */
     private $minPrice;
 
-    public function calculate(int $price) : int
+    /**
+     * @return string
+     */
+    public function getId(): string
     {
-        if ($price > $this->minPrice) {
-            return 0;
-        }
+        return $this->id;
+    }
 
-        if ($this->percent) {
-            return floor($price * $this->percent);
-        }
+    /**
+     * @return int
+     */
+    public function getAmount(): int
+    {
+        return $this->amount;
+    }
 
-        if ($this->amount) {
-            return $this->amount;
-        }
+    /**
+     * @return float
+     */
+    public function getPercent(): float
+    {
+        return $this->percent;
+    }
 
-        return 0;
+    /**
+     * @return int
+     */
+    public function getMinPrice(): int
+    {
+        return $this->minPrice;
     }
 }

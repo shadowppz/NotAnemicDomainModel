@@ -26,13 +26,24 @@ class DiscountService implements IDiscountService
 
     public function calculateAmount(string $productId, string $discountId, int $price): int
     {
-        $amount = 0;
-
-        if ($this->discountableProductSpecification->isSatisfied($productId, $discountId)) {
-            $discount = $this->discounts->get($discountId);
-            $amount   = $discount->calculate($price);
+        if (false === $this->discountableProductSpecification->isSatisfied($productId, $discountId)) {
+            return 0;
         }
 
-        return $amount;
+        $discount = $this->discounts->get($discountId);
+
+        if ($price > $discount->getMinPrice()) {
+            return 0;
+        }
+
+        if ($discount->getPercent()) {
+            return floor($price * $discount->getPercent());
+        }
+
+        if ($discount->getAmount()) {
+            return $discount->getAmount();
+        }
+
+        return 0;
     }
 }
